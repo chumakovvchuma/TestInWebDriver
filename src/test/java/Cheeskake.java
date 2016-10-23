@@ -6,20 +6,30 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static java.lang.Thread.sleep;
+
 
 public class Cheeskake {
 
     @Test
 
-    public void listCheesecakes() {
+    public void listCheesecakes() throws InterruptedException {
         System.setProperty("webdriver.gecko.driver","c:/geckodriver.exe");
         WebDriver driver = new FirefoxDriver();
 
         driver.get("http://www.thecheesecakefactory.com/");
 
-        driver.findElement(By.linkText("Menu")).click();
+        driver.findElement(By.xpath(".//*[@id='closeBtn']")).click();
+        sleep(3000);
 
-        driver.findElement(By.linkText("Cheesecake")).click();
+        driver.findElement(By.cssSelector(".head-menu>span")).click();
+        sleep(3000);
+
+        driver.findElement(By.xpath(".//*[@id='foodMenuPanels']/div[2]/div/div[1]/ul/li[1]/a/div")).click();
+        sleep(3000);
+
+        driver.findElement(By.xpath(".//*[@id='foodMenuPanels']/div[2]/div/div[2]/ul[7]/li[1]/a/div")).click();
+        sleep(3000);
 
         List<WebElement> cheesecakes = driver.findElements(By.xpath("id(&#39;leftNav_levelTwo&#39;)//li"));
 
